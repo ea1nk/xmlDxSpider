@@ -2,7 +2,7 @@
      XML Based Web Interface for DXSpider
      Juan J Lamas - EA1NK
      24 February 2014
-
+     Sample site: http://www.ed1zac.net/webdx/
 
 1. Why XML Web Interface?
 
