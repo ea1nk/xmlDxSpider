@@ -6,11 +6,8 @@ Description:
 		Juan J Lamas - EA1NK
 		24 February 2014
 
-<<<<<<< HEAD
-	Sample site: http://www.ed1zac.net/webdx/
-=======
 Sample site: http://www.ed1zac.net/webdx/
->>>>>>> 20b0d9094e5c17f25d0575bf526e5168aefc5596
+
 
 1. Why XML Web Interface?
 
