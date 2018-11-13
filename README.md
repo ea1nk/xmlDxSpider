@@ -1,9 +1,9 @@
 # xmlDxSpider
-     ## XML Based Web Interface for DXSpider
+     # XML Based Web Interface for DXSpider
 
-	   		## Juan J Lamas - EA1NK
+	   		# Juan J Lamas - EA1NK
 
-			  ## 24 February 2014
+			   #24 February 2014
 
 
 1. Why XML Web Interface?
