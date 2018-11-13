@@ -1,0 +1,158 @@
+/*
+
+
+	CSS document for DXSpider Web Interface
+		2014 Juan J. Lamas EA1NK
+
+
+*/
+
+@import('http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400,700,300');
+@import('http://www.google.com/fonts#QuickUsePlace:quickUse/Family:Allura');
+
+body{
+	
+	background-color:white;
+	font-family:'Open Sans' sans-serif;
+	color:black;
+	width:100%;
+	
+}
+
+a:hover{
+	
+	color:#151515;
+	font-weight:bold;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+a, a:visited{
+
+	color:black;
+	font-weight:bold;
+	text-decoration:none;
+
+}
+#header{
+	
+	height:50px;
+	width:98%;
+	border-radius:8px;
+	background: rgb(248,255,232); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(248,255,232,1) 0%, rgba(227,245,171,1) 33%, rgba(183,223,45,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,255,232,1)), color-stop(33%,rgba(227,245,171,1)), color-stop(100%,rgba(183,223,45,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow: 2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+	
+}
+
+#styles{
+
+height:15px;
+width: 90%;
+margin-top:10px;
+text-align:center;
+font-size:10px;
+}
+
+.powered {
+	
+	
+	font-family:'Allura' cursive;
+	font-size:12px;
+	float:right;
+	margin-top:-30px;
+	margin-right:20px;
+}
+#header h2{
+	color:gray;
+	font-size:20px;
+	padding-top:15px;
+	padding-left:15px;
+	}
+
+#body{
+	
+	
+}
+
+#spots, #wcys, #wwvs, #announces{
+	
+	margin-top:5px;
+	padding-bottom:15px;
+	width:98%;
+	/*height:410px;*/
+	border-radius:8px;
+	background: rgb(248,255,232); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(248,255,232,1) 0%, rgba(227,245,171,1) 33%, rgba(183,223,45,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,255,232,1)), color-stop(33%,rgba(227,245,171,1)), color-stop(100%,rgba(183,223,45,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(248,255,232,1) 0%,rgba(227,245,171,1) 33%,rgba(183,223,45,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow: 2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         2px 2px 9px 0px rgba(50, 50, 50, 0.75);
+}
+
+#spots_table,#wcys_table,#wwvs_table,#anns_table{
+
+	width:80%;
+	margin:0 auto;
+	border-collapse:collapse;
+
+}
+#spots_table td,#wcys_table td,#wwvs_table td,#anns_table td{
+	
+	padding-left:5px;
+	padding-right:5px;
+	font-size:12px;
+
+}
+
+
+#spots_table tr:nth-child(odd),#wcys_table tr:nth-child(odd),#wwvs_table tr:nth-child(odd),#anns_table tr:nth-child(odd){
+	
+	
+	background-color:#D0F5A9;
+
+}
+
+#spots_table tr:nth-child(even),#wcys_table tr:nth-child(even),#wwvs_table tr:nth-child(even),#anns_table tr:nth-child(even){
+	
+	
+	background-color:#FFFFFF;
+
+}
+
+h3{
+
+	color:gray;
+	width:100%;
+	background-color:#FAFAFA;
+	font-size:18px;
+	border-radius:8px 8px 0px 0px;
+	text-align:center;
+
+}
+#footer{
+	
+	height:20px;
+	width:98%;	
+	text-align:center;
+}
+
+.copyright{
+	
+	font-family:'Allura' cursive;
+	font-size:10px;
+	
+}

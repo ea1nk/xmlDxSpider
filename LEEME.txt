@@ -1,0 +1,105 @@
+		XML Based Web Interface for DXSpider
+
+	   		Juan J Lamas - EA1NK
+
+			  24 February 2014
+
+
+1. Por qué un interfaz XML?
+
+	El interface original de DL5DI solo se podía correr sobre el servidor local, sin 
+	posibilidad de recuperar los spots desde una web externa a menos que se incluyera 
+	en un <IFRAME> o se realizara un parsing complejo.
+	
+	Utilizando los scripts modificados para generar un documento XML, es posible
+	recuperar esta información con un sencillo HTTT Request en Javascript, PHP o
+	cualquier otro lenguaje de programación. No solo para mostrarlo en una página web
+	si no también para webapps, aplicaciones nativas u otro tipo de software.
+	
+
+
+2. El documento XML.
+
+	El documento XML es generado por el script en Perl webclusterXML.py. Es una lista
+	ordenada de spots, wcy, wwv y anuncios recuperados de los ficheros generados por el
+	DXSpider. Hay más información al respecto en la web de DL5DI. Se proporciona un archivo
+	sample.xml.	
+
+	El documento se puede obtener en  http://webserver_address/cgi-bin/webclusterXML	
+
+	La estructura del fichero XML es:
+
+	Cabecera: <?xml version='1.0' encoding='UTF-8'?>
+	
+	Contenedor para los datos:	 	<DATA></DATA>
+	Contenedor para los Spots:	 	<SPOTS></SPOTS>
+	Spot individual:				<SPOT></SPOT> 
+	Información del Spot:
+									<FROM></FROM>
+									<QRG></QRG>
+									<DX></DX>
+									<TEXT></TEXT>
+									<CQ></CQ>
+									<PREFIX></PREFIX>
+									<UTC></UTC>
+
+	Contenedor para los WCYs:		<WCYS></WCYS>
+	WCY individual:					<WCY></WCY>
+	Información WCY:				
+									<FROM></FROM>
+									<DATE></DATE>
+									<SFI></SFI>
+									<A></A>
+									<K></K>
+									<expK></expK>
+									<R></R>
+									<SA></SA>
+									<GMF></GMF>
+									<AURORA></AURORA>
+	
+	Contenedor para WWV:			<WWVS></WWVS>
+	WWV Individual:					<WWV></WWV>
+	Información WWV:				
+									<FROM></FROM>
+									<DATE></DATE>
+									<SFI></SFI>
+									<A></A>
+									<K></K>
+									<TEXT></TEXT>
+
+	Contenedor anuncios:			<ANNS></ANNS>
+	Anuncio individual:				<ANN></ANN>
+	Información anuncio:			
+									<PATH></PATH>
+									<DATE></DATE>
+									<TEXT></TEXT>
+
+3. El Interfaz Web.
+
+	
+	El archivo index.html proporcionado es una plantilla simple hecha en HTML5
+	y Javascript. El documento XML se obtiene mediante un HTTP Request y es
+	parseado en Javascript. Las tablas se crean dinámica con los datos obtenidos.
+	
+	No es necesaria ninguna función especial del lado del servidor para que funcione
+	este interface. Cualquier navegador moderno (I.E6 o superior, Chrome, Firefox) o 
+	dispositivo (iOS, Android) debería mostrarlo correctamente.
+	
+	Todo el aspecto gráfico se define en los archivos css, de modo que es fácilmente
+	personalizable.
+	
+
+4. Instalación.
+
+	Scripts Perl y Bash:
+		
+		Copiar webclusterXML al directorio /usr/lib/cgi-bin or al directorio cgi-bin correspondiente.
+        Copiar webclusterXML.pl al directorio /usr/local/bin directory o al directorio bin correspondiente.
+		Editar  webclusterXML para que apunte webclusterXML.pl si no se ha usado el directorio predeterminado.
+
+	Interfaz HTML 
+		
+		Copiar el contenido de htmldocs en el directorio deseado del servidor web.  
+
+
+73!                                               

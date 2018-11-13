@@ -1,0 +1,6 @@
+#! /bin/sh
+
+echo "Content-type: text/xml"
+echo
+/usr/local/bin/webclusterXML.pl $1
+

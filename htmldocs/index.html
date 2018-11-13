@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>.: DXSpider Web Interface :.</title>
+	    	<link rel="stylesheet" type="text/css" href="classic.css" id='style'>
+	    	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<meta name='keywords' Content='DXSpider, DXCluster, DX, DX Spots, Cluster, ham radio, radioamateur,radioaficionado, radio, HF, VHF, SHF, UHF, ham, radiopita, EA1NK, G1TLH, dcluster.org'>
+	<script>
+
+		function select_style(sheet){
+
+			document.getElementById('style').href=sheet;
+			localStorage.setItem('style',sheet);
+		}
+
+		if(!localStorage.style){
+
+			localStorage.setItem("style","classic.css");
+			select_style('classic.css');
+			
+		} else {
+
+		var style = localStorage.getItem('style');
+		select_style(style);
+
+		}
+	</script>
+	</head>
+	<body>
+		<div id='header'>
+			
+			<h2 class='cluster_title'>.: DXSpider Web Interface :.</h2>
+			<p class='powered'>Powered by <a href='http://www.dxcluster.org/main' target='new'>DXSpider</a></p>
+	
+		</div>
+		<div id='styles'>
+		<input type='radio' name='style' value='classic' id='classic' onClick="select_style('classic.css')" text='Classic' >
+		<label for='classic'>Classic</label>
+		<input type='radio' name='style' value='cherry' id='cherry' onClick="select_style('cherry.css')" >
+		<label for='cherry'>Cherry</label>
+		<input type='radio' name='style' value='mint' id='mint' onClick="select_style('mint.css')" >
+		<label for='mint'>Mint</label>
+		<input type='radio' name='style' value='lemon' id='lemon' onClick="select_style('lemon.css')" >
+		<label for='lemon'>Lemon</label>
+		<input type='radio' name='style' value='sea' id='sea' onClick="select_style('sea.css')">
+		<label for='sea'>Sea</label>
+		</div>
+		<div id='body'>
+			
+			<div id='spots'>
+			<h3>DX Spots</h3>			
+			</div>
+			<div id='wwvs'>
+			<h3>WWV</h3>
+			</div>
+			<div id='wcys'>
+			<h3>WWV</h3>
+			</div>
+			<div id='announces'>
+			<h3>Announces</h3>
+			</div>
+		</div>	
+		
+		<div id='footer'>
+		<p class='copyright'>2014 - EA1NK - Based on DXSpider Web Interface by DL5DI</p>	
+		</div>
+		<script type="text/javascript">
+
+		
+		function getData(){
+			
+			var xml_data = loadXML('/cgi-bin/webclusterXML?20');
+			var html = "";
+			if (xml_data !=null){
+			
+			
+			//SPOTS TABLE
+			var spots = xml_data.getElementsByTagName("SPOT");
+			html = "<h3>Dx Spots</h3>";
+			html+= "<table id='spots_table'>";
+			for(i=0;i<spots.length;i++){
+			html+="<tr class='spot'>";
+			var from = spots[i].getElementsByTagName("FROM")[0].childNodes[0].nodeValue;
+			var dx = spots[i].getElementsByTagName("DX")[0].childNodes[0].nodeValue;
+			var qrg = spots[i].getElementsByTagName("QRG")[0].childNodes[0].nodeValue;
+			var utc = spots[i].getElementsByTagName("UTC")[0].childNodes[0].nodeValue;
+			var text = spots[i].getElementsByTagName("TEXT")[0].childNodes[0].nodeValue;
+			html+="<td class='utc'>" + utc.trim() + "</td>" + "<td class='from'>" + from.trim() + "</td>" + "<td class='dx'><a href='http://www.hamqth.com/" + dx.trim() + "' target='new'>" + dx.trim() + "</a></td>" + "<td class='qrg'>" + qrg.trim() + "</td>" + "<td class = 'text'>" + text.trim() +"</td>";
+
+			html+="</tr>";
+				}
+			html+="</table>";
+			document.getElementById('spots').innerHTML=html;
+			
+			
+			//WCY TABLE
+						var wcys = xml_data.getElementsByTagName("WCY");
+			html ="<h3>WCY</h3>";
+			html+="<table id='wcys_table'>";
+			for(i=0;i<wcys.length;i++){
+			html+="<tr class='wcy'>";
+			var from = wcys[i].getElementsByTagName("FROM")[0].childNodes[0].nodeValue;
+			var date = wcys[i].getElementsByTagName("DATE")[0].childNodes[0].nodeValue;
+			var sfi = wcys[i].getElementsByTagName("SFI")[0].childNodes[0].nodeValue;
+			var a = wcys[i].getElementsByTagName("A")[0].childNodes[0].nodeValue;
+			var k = wcys[i].getElementsByTagName("K")[0].childNodes[0].nodeValue;
+			var expk = wcys[i].getElementsByTagName("expK")[0].childNodes[0].nodeValue;
+			var r = wcys[i].getElementsByTagName("R")[0].childNodes[0].nodeValue;
+			var sa = wcys[i].getElementsByTagName("SA")[0].childNodes[0].nodeValue;
+			var gmf = wcys[i].getElementsByTagName("GMF")[0].childNodes[0].nodeValue;
+			var aurora = wcys[i].getElementsByTagName("AURORA")[0].childNodes[0].nodeValue;
+			html+="<td class='date'>" + date.trim() + "</td>" + "<td class='from'>" + from.trim() + "</td>" + "<td class='wwx_data'>" + sfi.trim() + "</td>" + "<td class='wwx_data'>" + a.trim() + "</td>" + "<td class='wwx_data'>" + k.trim() + "</td>" + "<td class='wwx_data'>" + expk.trim() + "</td>" + "<td class='wwx_data'>" + r.trim() + "</td>" + "<td class='wwx_data'>" + sa.trim() + "</td>" + "<td class='wwx_data'>" + gmf.trim() + "</td>" + "<td class='aurora'>" + aurora.trim() + "</td>";
+			html+="</tr>";
+			}
+			html+="</table>";
+			document.getElementById('wcys').innerHTML=html;
+			
+			//WWV TABLE
+			
+			var wwvs = xml_data.getElementsByTagName("WWV");
+			html ="<h3>WWV</h3>";
+			html+="<table id='wwvs_table'>";
+			for(i=0;i<wwvs.length;i++){
+			html+="<tr class='wwv'>";
+			var from = wwvs[i].getElementsByTagName("FROM")[0].childNodes[0].nodeValue;
+			var date = wwvs[i].getElementsByTagName("DATE")[0].childNodes[0].nodeValue;
+			var sfi = wwvs[i].getElementsByTagName("SFI")[0].childNodes[0].nodeValue;
+			var a = wwvs[i].getElementsByTagName("A")[0].childNodes[0].nodeValue;
+			var k = wwvs[i].getElementsByTagName("K")[0].childNodes[0].nodeValue;
+			var text = wwvs[i].getElementsByTagName("TEXT")[0].childNodes[0].nodeValue;
+			html+="<td class='date'>" + date.trim() + "</td>" + "<td class='from'>" + from.trim() + "</td>" + "<td class='wwx_data'>" + sfi.trim() + "</td>" + "<td class='wwx_data'>" + a.trim() + "</td>" + "<td class='wwx_data'>" + k.trim() + "</td>" + "<td class='text'>" + text.trim() + "</td>";
+			html+="</tr>";
+			}
+			html+="</table>";
+			document.getElementById('wwvs').innerHTML=html;
+			
+			//ANN TABLE
+			
+			var anns = xml_data.getElementsByTagName("ANN");
+			html ="<h3>ANNOUNCES</h3>";
+			html+="<table id='anns_table'>";
+			for(i=0;i<anns.length;i++){
+			html+="<tr class='announce'>";
+			var path = anns[i].getElementsByTagName("PATH")[0].childNodes[0].nodeValue;
+			var date = anns[i].getElementsByTagName("DATE")[0].childNodes[0].nodeValue;
+			var text = anns[i].getElementsByTagName("TEXT")[0].childNodes[0].nodeValue;
+			html+="<td class='date'>" + date.trim() + "</td>" + "<td class='path'>" + path.trim() + "</td>" + "<td class='text'>" + text.trim() + "</td>";
+			html+="</tr>";
+			}
+			html+="</table>";
+			document.getElementById('announces').innerHTML=html;
+						}
+		}
+
+
+		function loadXML(path){
+
+		var xmlDoc;
+		if  (window.XMLHttpRequest){
+			
+			xmlDoc = new window.XMLHttpRequest();
+			xmlDoc.open('GET', path, false);
+			xmlDoc.setRequestHeader('Access-Control-Allow-Origin','*');
+			xmlDoc.send("");
+			return xmlDoc.responseXML;
+			}
+		else if (ActiveXObject("Microsoft.XMLDOM")) {
+
+			xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async = false;
+			xmlDoc.load(path);
+			return xmlDoc;
+
+			}
+		alert("Error loading XML file");
+		return null;
+
+		}
+		getData();
+		setInterval(function(){getData()},30000); //Refresh every 30 seconds.
+
+
+	   </script>
+	</body>
+	
+	
+	
+</html>
