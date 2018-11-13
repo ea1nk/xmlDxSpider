@@ -1,6 +1,6 @@
 # xmlDxSpider
 
-DESCRIPTION:
+Description:
 -----------------------------------------------------------------------------------------
 		XML Based Web Interface for DXSpider
 		Juan J Lamas - EA1NK
@@ -84,7 +84,9 @@ Sample site: http://www.ed1zac.net/webdx/
 	modern web browser (> Internet Explorer 6, Chrome, Firefox, Safari) or device
 	(iOS, Android) should render the interface correctly.
 
-	All the style info is attached in the css files, so it is easy to modify.   
+	All the style info is attached in the css files, so it is easy to modify.  
+	
+	Data is gathered from the DXSpider server every 30 seconds.
 
 4. Installation.
 
