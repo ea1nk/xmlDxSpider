@@ -1,11 +1,16 @@
 # xmlDxSpider
-     ## XML Based Web Interface for DXSpider
 
-	   		## Juan J Lamas - EA1NK
+Description:
+-----------------------------------------------------------------------------------------
+		XML Based Web Interface for DXSpider
+		Juan J Lamas - EA1NK
+		24 February 2014
 
-			  ## 24 February 2014
-
+<<<<<<< HEAD
 	Sample site: http://www.ed1zac.net/webdx/
+=======
+Sample site: http://www.ed1zac.net/webdx/
+>>>>>>> 20b0d9094e5c17f25d0575bf526e5168aefc5596
 
 1. Why XML Web Interface?
 
@@ -83,7 +88,9 @@
 	modern web browser (> Internet Explorer 6, Chrome, Firefox, Safari) or device
 	(iOS, Android) should render the interface correctly.
 
-	All the style info is attached in the css files, so it is easy to modify.   
+	All the style info is attached in the css files, so it is easy to modify.  
+	
+	Data is gathered from the DXSpider server every 30 seconds.
 
 4. Installation.
 
