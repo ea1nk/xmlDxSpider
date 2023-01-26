@@ -92,6 +92,7 @@
         Copy webclusterXML.pl to /usr/local/bin directory or your bin path.
 	chmod 755 /usr/lib/cgi-bin/webclusterXML
 		Edit webclusterXML to point to webclusterXML.pl if not in default path.
+		Copy dxcc.list to /spider/data/
 
 	HTML interface
 		
