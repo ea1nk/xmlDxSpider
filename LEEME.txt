@@ -94,9 +94,11 @@
 	Scripts Perl y Bash:
 		
 		Copiar webclusterXML al directorio /usr/lib/cgi-bin or al directorio cgi-bin correspondiente.
+		chmod 755 /usr/local/bin/webclusterXML
         Copiar webclusterXML.pl al directorio /usr/local/bin directory o al directorio bin correspondiente.
+	chmod 755 /usr/local/bin/webclusterXML.pl
 		Editar  webclusterXML para que apunte webclusterXML.pl si no se ha usado el directorio predeterminado.
-
+	Copiar dxcc.list a /spider/data
 	Interfaz HTML 
 		
 		Copiar el contenido de htmldocs en el directorio deseado del servidor web.  
