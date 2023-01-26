@@ -88,7 +88,9 @@
 	Perl and Bash scripts:
 		
 		Copy webclusterXML to /usr/lib/cgi-bin directory or your cgi-bin path.
+		chmod 755 /usr/lib/cgi-bin/webclusterXML
         Copy webclusterXML.pl to /usr/local/bin directory or your bin path.
+	chmod 755 /usr/lib/cgi-bin/webclusterXML
 		Edit webclusterXML to point to webclusterXML.pl if not in default path.
 
 	HTML interface
