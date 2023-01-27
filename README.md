@@ -105,9 +105,9 @@ Sample site: http://www.ed1zac.net/webdx/
 		Copy htmldocs content to the desired directory on the webserver.  
 
 5. Troubleshooting:
-	- Check that both webclusterXML and webclusterXML have excecutable attribute (chmod 755)
+	- Check that both webclusterXML and webclusterXML have executable attribute (chmod 755)
 	- Make sure webserver user (apache for apache webserver) is member of spider group (usermod -a -G spider apache)
-	- It is assumed that data files are at /spider/data. Edit webclusterXML.pl routes if needed to point to the correct directory.
+	- It is assumed that data files are at /spider/data. Edit webclusterXML.pl routes if needed to point to the correct directories.
 	- Make sure web server perl modules are enabled.
 
 73!                                               
