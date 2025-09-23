@@ -73,7 +73,7 @@ if (open(CNTFILE, ">/var/local/httpd/cgi-bin/webclusterXML.cnt")) {
     if ($ARGV[0] > 0) { # min
 	$n = $ARGV[0];
 	if($n > 50) {
-	    $n == 50;	# max
+	    $n = 50;	# max
 	}
     } else {
 	$n = 20;	# default
@@ -124,9 +124,9 @@ if(open(SPOTS, $spotfile)) {
 	$text =~ s/</&lt;/g;
 	$text =~ s/>/&gt;/g;
 	$text =~ s/\"/&quot;/g;
-	$text =~ s/ä/&auml;/g;
-	$text =~ s/ö/&ouml;/g;
-	$text =~ s/ü/&uuml;/g;
+	$text =~ s/Ã¤/&auml;/g;
+	$text =~ s/Ã¶/&ouml;/g;
+	$text =~ s/Ã¼/&uuml;/g;
 
 	$dbi = 1;
 	if(open(DXCC, $dxccfile)) {
