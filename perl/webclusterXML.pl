@@ -25,7 +25,7 @@
 
 $| = 1;		# flush print and write
 $rev = "20140219";
-
+use HTML::Entities;    # Add HTML::Entities for escaping
 # clear content of variables
 $spot[1] = ""; $spot[2] = ""; $spot[3] = ""; $spot[4] = "";
 $spot[5] = ""; $spot[6] = ""; $spot[7] = ""; $spot[8] = "";
@@ -95,81 +95,77 @@ if (open(CNTFILE, ">/var/local/httpd/cgi-bin/webclusterXML.cnt")) {
 #################### DX-Spots ##########################
 
 if(open(SPOTS, $spotfile)) {
-
-
     while($line = <SPOTS>) {
-	chop($line);
-	
-	for($i = $n;$i > 1; $i--) {
-	    $spot[$i] = $spot[$i-1];
-	}
-	$spot[1] = $line;
+        chomp($line);  # Use chomp instead of chop
+        for($i = $n; $i > 1; $i--) {
+            $spot[$i] = $spot[$i-1];
+        }
+        $spot[1] = $line;
     }
 
     $i = 1;
 
-# Table start
+    # Table start
     print("<SPOTS>");
 
-
     while($i <= $n) {
-	($qrg,$call,$zeit,$text,$spotter,$dxcc,$dummy,$dummy,$itu,$cq,$dummy) = split(/\^/,$spot[$i],11);
+        ($qrg,$call,$zeit,$text,$spotter,$dxcc,$dummy,$dummy,$itu,$cq,$dummy) = split(/\^/,$spot[$i],11);
 
-	# fix some special chars which may destroy the table structure
-	$text =~ s/\;/:/g;
-	$text =~ s|\\|\/|g;
-	$text =~ s/\&/&amp;/g;
-	$text =~ s/\$/&sect;/g;
-	$text =~ s/\|/&brvbar;/g;
-	$text =~ s/</&lt;/g;
-	$text =~ s/>/&gt;/g;
-	$text =~ s/\"/&quot;/g;
-	$text =~ s/ä/&auml;/g;
-	$text =~ s/ö/&ouml;/g;
-	$text =~ s/ü/&uuml;/g;
+        # Use HTML::Entities to encode special characters
+        $text = encode_entities($text);
+        $spotter = encode_entities($spotter);
+        $call = encode_entities($call);
 
-	$dbi = 1;
-	if(open(DXCC, $dxccfile)) {
-	    while($dbi < $dxcc) {
-		$dbline = <DXCC>;
-		$dbi++;
-	    }
-	    $pfx = <DXCC>;
-	    close(DXCC);
-	}
+        $dbi = 1;
+        if(open(DXCC, $dxccfile)) {
+            while($dbi < $dxcc) {
+                $dbline = <DXCC>;
+                $dbi++;
+            }
+            $pfx = <DXCC>;
+            chomp($pfx);  # Remove newline
+            close(DXCC);
+        }
 
-	if((length($spotter) > 0)) {
-	    print("<SPOT>");
-	    printf("<FROM>DX de %s:</FROM>",$spotter);
-	    printf("<QRG>%10.1f</QRG>",$qrg);
-	    if(index($call,'/') > 0){
-		($teil1,$teil2) = split(/\//,$call,2);
-		if(length($teil2) < length($teil1)) {
-		    $qrzcall = $teil1;
-		} else {
-		    ($qrzcall,$dummy) = split(/\//,$teil2,2);
-		}
-	    } else {
-		$qrzcall = $call;
-	    }
+        if((length($spotter) > 0)) {
+            print("<SPOT>");
+            printf("<FROM>DX de %s:</FROM>", $spotter);
+            printf("<QRG>%10.1f</QRG>", $qrg);
+            if(index($call,'/') > 0){
+                ($teil1,$teil2) = split(/\//,$call,2);
+                if(length($teil2) < length($teil1)) {
+                    $qrzcall = $teil1;
+                } else {
+                    ($qrzcall,$dummy) = split(/\//,$teil2,2);
+                }
+            } else {
+                $qrzcall = $call;
+            }
 
-	    $tmp = $qrzcall;
-	    $num = $tmp =~ tr/0-9//;
-	    $tmp = $qrzcall;
-	    $abc = $tmp =~ tr/A-Za-z//;
-	    
-	    if((index($qrzcall,'/') > 0) || ($num == 0) || ($abc < 2)) {
-		printf("<DX>%15.15s</DX>",$call);
-	    } else {
-		printf("<DX>%15.15s</DX>",$call);
-	    }
-	    printf("<TEXT>%30.30s</TEXT>",$text);    
-	    printf("<PREFIX>%2.2s</PREFIX>",$pfx);
-#	    printf("<ITU>%2.2s</ITU>",$itu);
-	    printf("<CQ>%2.2s</CQ>",$cq);
-	    ($sec,$min,$std,$mtag,$jahr,$wtag,$jtag,$somzeit) = gmtime($zeit);
-	    printf("<UTC>%2.2d%2.2dZ</UTC>",$std,$min);
-	    print("</SPOT>");
+            $tmp = $qrzcall;
+            $num = $tmp =~ tr/0-9//;
+            $tmp = $qrzcall;
+            $abc = $tmp =~ tr/A-Za-z//;
+
+            if((index($qrzcall,'/') > 0) || ($num == 0) || ($abc < 2)) {
+                printf("<DX>%15.15s</DX>", $call);
+            } else {
+                printf("<DX>%15.15s</DX>", $call);
+            }
+            printf("<TEXT>%30.30s</TEXT>", $text);    
+            printf("<PREFIX>%2.2s</PREFIX>", $pfx);
+            printf("<CQ>%2.2s</CQ>", $cq);
+            ($sec,$min,$std,$mtag,$jahr,$wtag,$jtag,$somzeit) = gmtime($zeit);
+            printf("<UTC>%2.2d%2.2dZ</UTC>", $std, $min);
+            print("</SPOT>");
+        }
+        $i++;
+    }    
+    
+    close(SPOTS);
+
+    # Table end
+    print("</SPOTS>");
 	}
 	$i++;
 
